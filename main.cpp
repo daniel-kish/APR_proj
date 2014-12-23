@@ -39,11 +39,11 @@ int main()
     valarray<double> sol(0.1,17);
 
 //    cout << 0 <<": " << sol[6] << endl;
-    for (int i = 1; i <= 10000; i++)
+    for (int i = 1; i <= 100000; i++)
     {
         sol = sys.solve(sol);
         eq.update(sol[1], sol[9], sol[3]);
-        clog << i*0.001 << ' ' << sol[6] << endl;
+        clog << i*0.0001 << ' ' << sol[6] << ' '<< sol[1] << ' ' << sol[0] << endl;
     }
 
 

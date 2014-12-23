@@ -10,8 +10,8 @@ class MyEquation
     double E1 = sin(0.0); // depends on time
     double C2 = 50.0E-6;
     double L3 = 0.001;
-    double C4 = 1.0;
-    double R6 = 1.0;
+    double C4 = 2.0E-12;
+    double R6 = 1E6;
     double R7 = 1.0;
 
     double Is = 1.0E-12;
@@ -22,7 +22,7 @@ class MyEquation
     double I3prev = 0.0;
     double U4prev = 0.0;
     double t = 0.0;
-    double Dt = 0.001;
+    double Dt = 0.0001;
 public:
     MyEquation(size_t _sz = 17): sz{_sz}
     {}

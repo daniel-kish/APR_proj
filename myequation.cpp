@@ -26,7 +26,7 @@ std::valarray<double> MyEquation::operator() (const std::valarray<double> & arg)
     v[8] = arg[14] - arg[8]/C2;
     v[9] = arg[2] - L3*arg[15];
     v[10] = arg[16] - arg[10]/C4;
-    v[11] = arg[11] - 1.0;/*Is*exp(arg[4] / (n*Vt)) - 1.0*/;
+    v[11] = arg[11] - Is*(exp(arg[4] / (n*Vt)) - 1.0);
     v[12] = arg[5] - arg[12]*R6;
     v[13] = arg[6] - arg[13]*R7;
 
@@ -56,7 +56,7 @@ Matrix MyEquation::jacoby (const std::valarray<double> &arg) const
     J(8,14) = 1.0; J(8,8) = -1.0/C2;
     J(9,2) = 1.0; J(9,15) = -L3;
     J(10,16) = 1.0; J(10,10) = -1.0/C4;
-    J(11,11) = 1.0; //J(11, 4) = -Is*exp(arg[4] / (n*Vt)) / (n*Vt);
+    J(11,11) = 1.0; J(11, 4) = -Is*exp(arg[4] / (n*Vt)) / (n*Vt);
     J(12,5) = 1.0; J(12, 12) = -R6;
     J(13,6) = 1.0; J(13, 13) = -R7;
     J(14,14) = 1.0; J(14,1) = -1.0/Dt;
