@@ -17,7 +17,7 @@ public:
 
     LESystem(const Matrix &, const std::valarray<double> &);   // work with copies
     LESystem(Matrix&&, std::valarray<double>&&);               // steal(move) and "spoil"
-    LESystem(const Matrix &, std::valarray<double>&&);           // steal only free member
+    LESystem(const Matrix &, std::valarray<double>&&);         // steal only free member
     LESystem(Matrix&&, const std::valarray<double> &);         // steal only Matrix
 
     std::valarray<double> solve();

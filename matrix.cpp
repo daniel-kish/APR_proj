@@ -3,7 +3,8 @@
 #include <iomanip>
 
 Matrix::Matrix(std::size_t rows) : v(rows*rows), nr_rows{rows}, nr_cols{rows}
-{ }
+{
+}
 
 Matrix::Matrix(std::size_t rows, std::size_t cols)
     : v(rows*cols), nr_rows{rows}, nr_cols{cols}

@@ -3,25 +3,29 @@
 #include "lesystem.h"
 #include <iomanip>
 #include <chrono>
-
-void random_vec(std::valarray<double>& v)
-{
-    std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-    time_t now_c = std::chrono::system_clock::to_time_t(now);
-
-    std::uniform_real_distribution<double> unif(-5.0, 5.0);
-    std::default_random_engine re(now_c);
-    for (auto& elem : v)
-        elem = unif(re);
-}
+#include "myequation.h"
+#include <cmath>
+#include <nesystem.h>
+#include <fstream>
 
 std::ostream& operator << (std::ostream& out, std::valarray<double>&& v)
 {
+    out << std::fixed << std::setprecision(6);
     for (auto& elem : v)
         out << elem << std::endl;
 
     return out;
 }
+
+std::ostream& operator << (std::ostream& out, std::valarray<double>& v)
+{
+    out << std::fixed << std::setprecision(6);
+    for (auto& elem : v)
+        out << elem << std::endl;
+
+    return out;
+}
+
 
 int main()
 {
@@ -30,26 +34,19 @@ int main()
 
     cout << "God bless this undertaking and let it all be allright!" << endl;
 
-    size_t N(150);
-    Matrix A(N);
-    A.randomize(-5.0, 5.0);
-    A(0,0) = 0.0; A(5,5) = 0.0; A(110,110) = 0.0;
+    MyEquation eq;
+    NESystem<MyEquation> sys(eq);
+    valarray<double> sol(0.1,17);
 
-    std::valarray<double> B(N);
-    random_vec(B);
-
-    LESystem s(A,B);
-    try {
-        cout << fixed << setprecision(16) << (A*s.solve() - B).sum() << endl;
-    }
-    catch (std::exception& e)
+//    cout << 0 <<": " << sol[6] << endl;
+    for (int i = 1; i <= 10000; i++)
     {
-        std::cerr << e.what() << endl;
+        sol = sys.solve(sol);
+        eq.update(sol[1], sol[9], sol[3]);
+        clog << i*0.001 << ' ' << sol[6] << endl;
     }
 
-//    auto t0 = high_resolution_clock::now();
-//    auto t1 = high_resolution_clock::now();
-//    cout << duration_cast<microseconds>(t1-t0).count() << endl;
+
 
     return 0;
 }

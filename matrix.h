@@ -19,7 +19,7 @@ public:
     Matrix & operator=(const Matrix &) = default;
     // move
     Matrix(Matrix&&) = default;
-    Matrix & operator= ( Matrix &&) = default;
+    Matrix & operator= (Matrix &&) = default;
 
     size_t rows() const
     {
