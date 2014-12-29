@@ -7,6 +7,7 @@
 #include <cmath>
 #include <nesystem.h>
 #include <fstream>
+#include "equation.h"
 
 std::ostream& operator << (std::ostream& out, std::valarray<double>&& v)
 {
@@ -30,23 +31,23 @@ std::ostream& operator << (std::ostream& out, std::valarray<double>& v)
 int main()
 {
     using namespace std;
-    using namespace chrono;
-
     cout << "God bless this undertaking and let it all be allright!" << endl;
 
-    MyEquation eq;
-    NESystem<MyEquation> sys(eq);
-    valarray<double> sol(0.1,17);
+    double Dt = 0.0001;
+    double T = 10.0;
+    MyEquation eq(Dt);
 
-//    cout << 0 <<": " << sol[6] << endl;
-    for (int i = 1; i <= 100000; i++)
+
+    NESystem<MyEquation> sys(eq);
+    valarray<double> sol(1.0, eq.dim());
+
+    ofstream file("out6.svd");
+    for (int i = 1; i <= T/Dt; i++)
     {
         sol = sys.solve(sol);
         eq.update(sol[1], sol[9], sol[3]);
-        clog << i*0.0001 << ' ' << sol[6] << ' '<< sol[1] << ' ' << sol[0] << endl;
+        file << i*Dt << ' ' << -sol[6] <<' ' << -sol[1] << endl;
     }
-
-
 
     return 0;
 }

@@ -5,11 +5,13 @@ SOURCES += \
     matrix.cpp \
     lesystem.cpp \
     myequation.cpp \
-    dynsystem.cpp
+    dynsystem.cpp \
+    equation.cpp
 
 HEADERS += \
     matrix.h \
     lesystem.h \
     myequation.h \
     nesystem.h \
-    dynsystem.h
+    dynsystem.h \
+    equation.h

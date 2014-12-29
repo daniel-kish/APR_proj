@@ -60,7 +60,7 @@ Matrix MyEquation::jacoby (const std::valarray<double> &arg) const
     J(12,5) = 1.0; J(12, 12) = -R6;
     J(13,6) = 1.0; J(13, 13) = -R7;
     J(14,14) = 1.0; J(14,1) = -1.0/Dt;
-    J(15, 15) = 1.0; J(15, 9) = -1/Dt;
+    J(15, 15) = 1.0; J(15, 9) = -1.0/Dt;
     J(16,16) = 1.0; J(16,3) = -1.0/Dt;
 
 
