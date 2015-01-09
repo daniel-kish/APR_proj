@@ -85,5 +85,5 @@ size_t LESystem::safeRowBelow(size_t origin)
     for (size_t row = origin; row < A.rows(); row++)
         if ( fabs(A(row, origin)) > 10.0E-6 )
             return row;
-    return A.cols(); // if row == A.rows() - error
+    return A.cols()+1; // if row == A.rows() - error
 }

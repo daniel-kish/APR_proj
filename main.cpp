@@ -33,20 +33,20 @@ int main()
     using namespace std;
     cout << "God bless this undertaking and let it all be allright!" << endl;
 
-    double Dt = 0.0001;
-    double T = 10.0;
-    MyEquation eq(Dt);
+    double Dt = 0.00001;
+    double Tm = 0.001;
+    Equation eq(Dt, 20);
 
 
-    NESystem<MyEquation> sys(eq);
+    NESystem<Equation> sys(eq);
     valarray<double> sol(1.0, eq.dim());
 
-    ofstream file("out6.svd");
-    for (int i = 1; i <= T/Dt; i++)
+    ofstream file("vout.svd");
+    for (int i = 1; i <= Tm/Dt; i++)
     {
         sol = sys.solve(sol);
-        eq.update(sol[1], sol[9], sol[3]);
-        file << i*Dt << ' ' << -sol[6] <<' ' << -sol[1] << endl;
+        eq.update(sol[7], sol[8], sol[9]);
+//        cout << i*Dt << ' ' << sol[1] << endl;
     }
 
     return 0;

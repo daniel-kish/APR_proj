@@ -41,8 +41,8 @@ std::valarray<double> NESystem<Function>::solve(const std::valarray<double> &ori
         }
         catch (std::exception& e)
         {
-//            std::cerr << e.what() << endl;
-//            std::cerr << "But we will most certainly try to do something =)\n";
+            std::cerr << e.what() << endl;
+            std::cerr << "But we will most certainly try to do something =)\n";
             appr += getRandomVec(appr.size(), -5.0, 5.0);
             continue;
         }
@@ -52,7 +52,7 @@ std::valarray<double> NESystem<Function>::solve(const std::valarray<double> &ori
             break;
         }
     }
-//    cout << iterCount << " iteration(s)" << endl;
+    cout << iterCount << " iteration(s)" << endl;
 
     return appr;
 }
